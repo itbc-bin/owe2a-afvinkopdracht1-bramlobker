@@ -8,7 +8,7 @@
 def main():
     
     try:
-        bestand = "alpaca_test.fa"
+        bestand = "alpaca.fna"
         headers, seqs = lees_inhoud(bestand)
     
         
@@ -23,13 +23,15 @@ def main():
                     knipt(seqs[i])
                 else:
                     print("Sequentie is geen DNA. Er is iets fout gegaan.")
-    except FileNotFoundError:
+
+    # Hier staan alle foutcodes
+    except FileNotFoundError:  # Deze word gebruikt als het programma het bestand niet kan vinden.
         print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .FASTA format zijn")
-    except UnicodeDecodeError:
+    except UnicodeDecodeError: # Deze wordt gebruikt als het bestand geen .FASTA is, maar bijvoorbeeld een .DOCX of .PNG
         print ("Dit bestand is geen .FASTA bestand. Voer een .FASTA bestand in, in de map.")
-    except SyntaxError:
+    except SyntaxError:        # Deze error wordt opgegooit als het programma geen 'boolean' waarde retourneerd
         print ("Het programma geeft geen Boolean waarde")
-    except TypeError:
+    except TypeError:          # Deze error wordt opgegooit als het programma niet de verwachte sequenties krijgt ("A","T","C","G"), maar een andere string ("hoi5")
         print ("Het programma heeft niet de verwachte input en kan het dus niet verwerken. Kijk of het bestand volledig is.")
 def lees_inhoud(bestands_naam):
       
@@ -59,7 +61,7 @@ def is_dna(seq):
     total = a + t + c + g
     if total == len(seq):
         dna = True
-    if dna != True or False:
+    if dna != True or False: # Het programma checked of dna een boolean is, als dit niet zo is wordt een error geraised.
         raise SyntaxError
             
     return dna
@@ -71,6 +73,7 @@ def knipt(alpaca_seq):
         naam, seq = line.split(" ")
         seq = seq.strip().replace("^","")
 
+        # Het programma checked hier de ingekomen sequentie van het enzym daadwerkelijk een enzym is en niet een andere string
 
         a = seq.count("A")
         t = seq.count("T")
@@ -79,6 +82,8 @@ def knipt(alpaca_seq):
         total = a + t + c + g
         if total != len(seq):
             raise TypeError
+
+        # Het programma checked hier de ingekomen alpaca sequentie daadwerkelijk een enzym is en niet een andere string
 
         a = alpaca_seq.count("A")
         t = alpaca_seq.count("T")
