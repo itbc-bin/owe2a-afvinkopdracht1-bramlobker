@@ -23,7 +23,7 @@ def main():
         print (40* "=")
 
     except FileNotFoundError:
-        print ("\nEr is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .fna zijn")
+        print ("\nEr is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .fna format zijn")
     
 #   zoekwoord = input("Geef een zoekwoord op: ")
 
@@ -82,6 +82,9 @@ def knipt(element, hoeveel, enzym):
     sequentie = ""
     hoeveel += 1
     y = 0
+
+    print ("element", element)
+    print ("enzym", enzym)
 
     bestand = open("enzymen.txt")
     for line in bestand:

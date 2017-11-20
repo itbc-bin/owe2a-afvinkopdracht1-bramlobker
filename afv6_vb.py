@@ -1,4 +1,5 @@
 # Naam:
+
 # Datum:
 # Versie:
 
@@ -24,7 +25,8 @@ def main():
                     print("Sequentie is geen DNA. Er is iets fout gegaan.")
     except FileNotFoundError:
         print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .fna format zijn")
-    
+    except UnicodeDecodeError:
+        print ("Dit bestand is geen .FASTA bestand. Voer een .FASTA bestand in, in de map.")
 def lees_inhoud(bestands_naam):
       
      bestand = open(bestands_naam)
