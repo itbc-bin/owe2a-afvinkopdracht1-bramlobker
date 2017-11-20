@@ -23,6 +23,7 @@ def main():
                     knipt(seqs[i])
                 else:
                     print("Sequentie is geen DNA. Er is iets fout gegaan.")
+        print (dna)
     except FileNotFoundError:
         print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .fna format zijn")
     except UnicodeDecodeError:
