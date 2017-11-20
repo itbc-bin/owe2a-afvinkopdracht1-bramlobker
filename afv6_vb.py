@@ -27,7 +27,7 @@ def main():
         print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .FASTA format zijn")
     except UnicodeDecodeError:
         print ("Dit bestand is geen .FASTA bestand. Voer een .FASTA bestand in, in de map.")
-    #except Exception:
+    except SyntaxError:
         print ("Het programma geeft geen Boolean waarde")
     except TypeError:
         print ("Het programma heeft niet de verwachte input en kan het dus niet verwerken. Kijk of het bestand volledig is.")
@@ -59,8 +59,8 @@ def is_dna(seq):
     total = a + t + c + g
     if total == len(seq):
         dna = True
-    #if dna != True or False:
-        #raise Exception
+    if dna != True or False:
+        raise SyntaxError
             
     return dna
 
