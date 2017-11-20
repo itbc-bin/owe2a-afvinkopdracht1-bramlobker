@@ -23,11 +23,14 @@ def main():
                     knipt(seqs[i])
                 else:
                     print("Sequentie is geen DNA. Er is iets fout gegaan.")
-        print (dna)
     except FileNotFoundError:
-        print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .fna format zijn")
+        print ("Er is geen bestand aanwezig. Voeg een bestand toe waaruit het programma de data kan halen. Deze MOET in .FASTA format zijn")
     except UnicodeDecodeError:
         print ("Dit bestand is geen .FASTA bestand. Voer een .FASTA bestand in, in de map.")
+    #except Exception:
+        print ("Het programma geeft geen Boolean waarde")
+    except TypeError:
+        print ("Het programma heeft niet de verwachte input en kan het dus niet verwerken. Kijk of het bestand volledig is.")
 def lees_inhoud(bestands_naam):
       
      bestand = open(bestands_naam)
@@ -56,6 +59,9 @@ def is_dna(seq):
     total = a + t + c + g
     if total == len(seq):
         dna = True
+    #if dna != True or False:
+        #raise Exception
+            
     return dna
 
 # bij deze functie kan je een deel van de code die je de afgelopen 2 afvinkopdrachten geschreven hebt herbruiken
@@ -64,6 +70,26 @@ def knipt(alpaca_seq):
     for line in bestand:
         naam, seq = line.split(" ")
         seq = seq.strip().replace("^","")
+
+
+        a = seq.count("A")
+        t = seq.count("T")
+        c = seq.count("C")
+        g = seq.count("G")
+        total = a + t + c + g
+        if total != len(seq):
+            raise TypeError
+
+        a = alpaca_seq.count("A")
+        t = alpaca_seq.count("T")
+        c = alpaca_seq.count("C")
+        g = alpaca_seq.count("G")
+        total = a + t + c + g
+        if total != len(alpaca_seq):
+            raise TypeError
+
+        
+        
         if seq in alpaca_seq:
             print(naam, "knipt in sequentie")
     
